@@ -1,0 +1,37 @@
+body {
+    background-color: goldenrod;
+}
+main {
+    max-width: 1200px;
+    margin:auto;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-areas: 
+        "sidebar table";
+}
+tbody {
+    background-color: white;
+}
+aside {
+    grid-area: "sidebar";
+    background-color: fuchsia;
+}
+aside input {
+    width: 100%;
+}
+table {
+    grid-area: "table";
+    background-color: red
+}
+@media(max-width: 700px){
+    main {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "sidebar"
+            "table"
+    }
+    aside input {
+        width: 100%;
+    }
+}
