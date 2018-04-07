@@ -3,7 +3,7 @@ body {
 }
 main {
     max-width: 1200px;
-    margin:auto;
+    margin: auto;
     display: grid;
     grid-template-columns: 200px 1fr;
     grid-template-areas: 
