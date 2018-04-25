@@ -1,8 +1,18 @@
+function go(){
+    search(document.getElementsByTagName('input')[0].value);
+}
 function search(handle) {
-    var tbody = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0];
+    var table = document.getElementsByTagName('table')[0];
+    table.style.visibility = "hidden";
+
+    var loadingSpinner = document.getElementById('loading_spinner');
+    loadingSpinner.style.visibility = "visible";
+   
+    var tbody = table.getElementsByTagName('tbody')[0];
     while (tbody.firstChild) {
         tbody.removeChild(tbody.firstChild);
     }
+
     if (handle.length > 0) {
         fetch('http://codeforces.com/api/user.status?handle=' + handle).then(function(response) {
             return response.json();
@@ -38,6 +48,15 @@ function search(handle) {
                 tr.appendChild(nameTd);
                 tbody.appendChild(tr);
             }
+
+            loadingSpinner.style.visibility = "hidden";
+            table.style.visibility = "visible";
+        }).catch(function(error){
+            console.log(error);
+            loadingSpinner.style.visibility = "hidden";
         })
+    }
+    else {
+        loadingSpinner.style.visibility = "hidden";
     }
 }

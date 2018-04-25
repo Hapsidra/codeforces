@@ -19,9 +19,19 @@ aside {
 aside input {
     width: 100%;
 }
+aside button {
+    width: 100%;
+}
 table {
     grid-area: "table";
     background-color: red
+}
+.fa {
+    margin-left: 6px; /* Some padding */
+}
+.fa[style*="visibility: hidden"] {
+    width: 0px;
+    height: 0px;
 }
 @media(max-width: 700px){
     main {
