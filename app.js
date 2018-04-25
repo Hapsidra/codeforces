@@ -49,8 +49,10 @@ function search(handle) {
                 tbody.appendChild(tr);
             }
 
+            if (Object.keys(unsolved).length > 0) {
+                table.style.visibility = "visible";
+            }
             loadingSpinner.style.visibility = "hidden";
-            table.style.visibility = "visible";
         }).catch(function(error){
             console.log(error);
             loadingSpinner.style.visibility = "hidden";
