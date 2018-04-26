@@ -26,8 +26,8 @@ table {
     grid-area: "table";
     background-color: red
 }
-.fa {
-    margin-left: 6px; /* Some padding */
+#main_button {
+    height: 30px;
 }
 .fa[style*="visibility: hidden"] {
     width: 0px;

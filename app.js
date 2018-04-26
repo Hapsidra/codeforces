@@ -1,9 +1,12 @@
-function go(){
+function go() {
     search(document.getElementsByTagName('input')[0].value);
 }
 function search(handle) {
     var table = document.getElementsByTagName('table')[0];
     table.style.visibility = "hidden";
+
+    var mainButtonText = document.getElementById('main_button_text');
+    mainButtonText.textContent = '';
 
     var loadingSpinner = document.getElementById('loading_spinner');
     loadingSpinner.style.visibility = "visible";
@@ -53,12 +56,15 @@ function search(handle) {
                 table.style.visibility = "visible";
             }
             loadingSpinner.style.visibility = "hidden";
+            mainButtonText.textContent = 'OK';
         }).catch(function(error){
             console.log(error);
             loadingSpinner.style.visibility = "hidden";
+            mainButtonText.textContent = 'OK';
         })
     }
     else {
         loadingSpinner.style.visibility = "hidden";
+        mainButtonText.textContent = 'OK';
     }
 }
