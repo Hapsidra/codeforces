@@ -37,6 +37,7 @@ function search(handle) {
 
             for (number in unsolved) {
                 var tr = document.createElement('tr');
+                tbody.appendChild(tr);
                 var numberTd = document.createElement('td');
                 var nameTd = document.createElement('td');
                 var numberLink = document.createElement('a');
@@ -51,7 +52,12 @@ function search(handle) {
                 nameTd.appendChild(nameLink);
                 tr.appendChild(numberTd);
                 tr.appendChild(nameTd);
-                tbody.appendChild(tr);
+                
+                var tagsTd = document.createElement('td');
+                tr.appendChild(tagsTd);
+                var tags = unsolved[number].problem.tags;
+                for(var i = 0; i < tags.length; i++)
+                    tagsTd.textContent += tags[i] + (i != tags.length - 1 ? ", " : "");
             }
 
             if (Object.keys(unsolved).length > 0) {
