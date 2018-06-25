@@ -43,10 +43,10 @@ function search(handle) {
                 var numberLink = document.createElement('a');
                 var nameLink = document.createElement('a');
                 numberLink.innerText = number;
-                numberLink.href = "http://codeforces.com/contest/"+unsolved[number].contestId+"/problem/"+unsolved[number].problem.index;
+                numberLink.href = "https://codeforces.com/contest/"+unsolved[number].contestId+"/problem/"+unsolved[number].problem.index;
                 numberLink.target="_blank";
                 nameLink.innerText = unsolved[number].problem.name;
-                nameLink.href = "http://codeforces.com/contest/"+unsolved[number].contestId+"/problem/"+unsolved[number].problem.index;
+                nameLink.href = "https://codeforces.com/contest/"+unsolved[number].contestId+"/problem/"+unsolved[number].problem.index;
                 nameLink.target="_blank";
                 numberTd.appendChild(numberLink);
                 nameTd.appendChild(nameLink);
