@@ -17,7 +17,7 @@ function search(handle) {
     }
 
     if (handle.length > 0) {
-        fetch('http://codeforces.com/api/user.status?handle=' + handle).then(function(response) {
+        fetch('https://codeforces.com/api/user.status?handle=' + handle).then(function(response) {
             return response.json();
         }).then(function (json) {
             var problems = json.result;
