@@ -38,27 +38,12 @@
         <noscript><div><img src="https://mc.yandex.ru/watch/48665771" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
         <!-- -->
         <!-- /Yandex.Metrika counter -->
-        <main>
-            <aside>
-                <input placeholder="Type your handle" type="text">
-                <button type="submit" onclick="go()" class="buttonload" id="main_button">
-                    <span id="main_button_text">OK</span><i class="fa fa-circle-o-notch fa-spin" id="loading_spinner" style="visibility: hidden" ></i>
-                </button>
-                <div class="separator"></div>
-                <a href="https://github.com/Hapsidra/codeforces-unsolved">GitHub</a>
-            </aside>
-            <table style="visibility: hidden;">
-                <thead>
-                    <tr>
-                        <th>№</th>
-                        <th>Name</th>
-                        <th>Tags</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </main>
-        <script lang="javascript" src="app.js"></script>
+        <div id='app'>
+            
+        </div>
+        <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+        <script type="text/babel" lang="javascript" src="app.js"></script>
     </body>
 </html>

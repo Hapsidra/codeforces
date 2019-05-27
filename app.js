@@ -1,27 +1,26 @@
-function go() {
-    search(document.getElementsByTagName('input')[0].value);
-}
-function search(handle) {
-    var table = document.getElementsByTagName('table')[0];
-    table.style.visibility = "hidden";
+class App extends React.Component {
 
-    var mainButtonText = document.getElementById('main_button_text');
-    mainButtonText.textContent = '';
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoading: false,
+            problems: []
+        }
 
-    var loadingSpinner = document.getElementById('loading_spinner');
-    loadingSpinner.style.visibility = "visible";
-   
-    var tbody = table.getElementsByTagName('tbody')[0];
-    while (tbody.firstChild) {
-        tbody.removeChild(tbody.firstChild);
+        this.handleInput = React.createRef();
+        this.go = this.go.bind(this)
     }
 
-    if (handle.length > 0) {
-        fetch('https://codeforces.com/api/user.status?handle=' + handle).then(function(response) {
-            return response.json();
-        }).then(function (json) {
+    async go() {
+        const handle = this.handleInput.current.value
+        console.log(handle)
+        if (handle.length > 0) {
+            this.setState({
+                isLoading: true
+            })
+            const response = await fetch('https://codeforces.com/api/user.status?handle=' + handle)
+            const json = await response.json()
             var problems = json.result;
-            console.log(problems);
             var solved = {};
             var unsolved = {};
             for(var i = 0;i<problems.length;i++){
@@ -34,45 +33,81 @@ function search(handle) {
                     unsolved[problems[i].problem.contestId + problems[i].problem.index] = problems[i];
                 }
             }
-
-            for (number in unsolved) {
-                var tr = document.createElement('tr');
-                tbody.appendChild(tr);
-                var numberTd = document.createElement('td');
-                var nameTd = document.createElement('td');
-                var numberLink = document.createElement('a');
-                var nameLink = document.createElement('a');
-                numberLink.innerText = number;
-                numberLink.href = "https://codeforces.com/contest/"+unsolved[number].contestId+"/problem/"+unsolved[number].problem.index;
-                numberLink.target="_blank";
-                nameLink.innerText = unsolved[number].problem.name;
-                nameLink.href = "https://codeforces.com/contest/"+unsolved[number].contestId+"/problem/"+unsolved[number].problem.index;
-                nameLink.target="_blank";
-                numberTd.appendChild(numberLink);
-                nameTd.appendChild(nameLink);
-                tr.appendChild(numberTd);
-                tr.appendChild(nameTd);
-                
-                var tagsTd = document.createElement('td');
-                tr.appendChild(tagsTd);
-                var tags = unsolved[number].problem.tags;
-                for(var i = 0; i < tags.length; i++)
-                    tagsTd.textContent += tags[i] + (i != tags.length - 1 ? ", " : "");
+            var a = []
+            for (var number in unsolved) {
+                console.log(number)
+                a.push(unsolved[number])
             }
-
-            if (Object.keys(unsolved).length > 0) {
-                table.style.visibility = "visible";
-            }
-            loadingSpinner.style.visibility = "hidden";
-            mainButtonText.textContent = 'OK';
-        }).catch(function(error){
-            console.log(error);
-            loadingSpinner.style.visibility = "hidden";
-            mainButtonText.textContent = 'OK';
-        })
+            a.sort(function(a, b) {
+                var r1 = a.problem.rating
+                var r2 = b.problem.rating
+                if (r1 == undefined) {
+                    r1 = 10e5
+                }
+                if (r2 == undefined) {
+                    r2 = 10e5
+                }
+                return r1 - r2;
+              })
+            console.log(a)
+            this.setState({
+                isLoading: false,
+                problems: a
+            })
+        } else {
+            this.setState({
+                problems: []
+            })
+        }
     }
-    else {
-        loadingSpinner.style.visibility = "hidden";
-        mainButtonText.textContent = 'OK';
+
+    handleKeyPress = (event) => {
+        console.log(event)
+        if(event.key == 'Enter'){
+            this.go()
+        }
+    }
+
+    render() {
+        return <main><aside>
+                    <input placeholder="Type your handle" type="text" ref={this.handleInput} onKeyPress={this.handleKeyPress}></input>
+                    <button type="submit" onClick={this.go} class="buttonload" id="main_button">
+                    <span id="main_button_text">{this.state.isLoading ? '' : 'OK'}</span>{this.state.isLoading ? <i class="fa fa-circle-o-notch fa-spin" id="loading_spinner"></i> : null }
+                    </button>
+                    <div class="separator"></div>
+                    <a href="https://github.com/Hapsidra/codeforces-unsolved">GitHub</a>
+                </aside>
+                    {this.state.problems.length > 0 ?<table>
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Name</th>
+                                <th>Tags</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.problems.map((item, index)=> {
+                                const problem = item.problem
+                                const link = "https://codeforces.com/contest/"+item.contestId+"/problem/"+problem.index
+                                const tags = problem.tags;
+                                var tagsStr = ''
+                                for(var i = 0; i < tags.length; i++)
+                                    tagsStr += tags[i] + (i != tags.length - 1 ? ", " : "");
+
+                                return <tr>
+                                    <td><a target='_blank' href={link}>{problem.contestId + problem.index}</a></td>
+                                    <td><a target='_blank' href={link}>{problem.name}</a></td>
+                                    <td>{tagsStr}</td>
+                                    <td>{problem.rating}</td>
+                                    </tr>
+                            })}
+                        </tbody>
+                    </table> : null}
+                    
+                </main>
     }
 }
+
+const container = document.getElementById('app')
+ReactDOM.render(<App/>, container)
