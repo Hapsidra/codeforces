@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/codeforces-unsolved/static/js/main.2310d042.chunk.js",
+    "main.js.map": "/codeforces-unsolved/static/js/main.2310d042.chunk.js.map",
+    "runtime~main.js": "/codeforces-unsolved/static/js/runtime~main.0e69b1da.js",
+    "runtime~main.js.map": "/codeforces-unsolved/static/js/runtime~main.0e69b1da.js.map",
+    "static/js/2.94f9ea89.chunk.js": "/codeforces-unsolved/static/js/2.94f9ea89.chunk.js",
+    "static/js/2.94f9ea89.chunk.js.map": "/codeforces-unsolved/static/js/2.94f9ea89.chunk.js.map",
+    "index.html": "/codeforces-unsolved/index.html",
+    "precache-manifest.7ceb1497612a6d3efbec4ee3f570ce1c.js": "/codeforces-unsolved/precache-manifest.7ceb1497612a6d3efbec4ee3f570ce1c.js",
+    "service-worker.js": "/codeforces-unsolved/service-worker.js"
+  }
+}
