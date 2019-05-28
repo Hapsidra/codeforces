@@ -1,0 +1,2 @@
+main{max-width:1200px;margin:auto;display:grid;grid-template-columns:200px 1fr;grid-template-areas:"sidebar table"}aside{grid-area:"sidebar"}aside button,aside input{width:100%}table{grid-area:"table";background-color:#789}tbody{background-color:#fff}.separator{height:2px;margin:8px 2px 8px 8px;background-color:#789}#main_button{height:30px}.fa[style*="visibility: hidden"]{width:0;height:0}@media(max-width:700px){main{display:grid;grid-template-columns:1fr;grid-template-areas:"sidebar" "table"}aside input{width:100%}}
+/*# sourceMappingURL=main.cdbea2ca.chunk.css.map */
