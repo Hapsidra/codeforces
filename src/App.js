@@ -2,7 +2,7 @@ import React from 'react'
 import history from './history'
 import Table from './Table'
 import PropTypes from "prop-types";
-import { BrowserRouter, Router, Route, Link } from "react-router-dom";
+import { BrowserRouter, Router, Route, Link, Switch, Redirect } from "react-router-dom";
 
 class App extends React.Component {
     constructor(props) {
@@ -16,13 +16,15 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        const handle = window.location.pathname.substr(1, window.location.pathname.length - 1)
+        const href = window.location.pathname
+        const handle = href.substring(href.lastIndexOf('/') + 1)
         this.handleInput.current.value = handle
     }
 
     async go() {
         const handle = this.handleInput.current.value
-        history.push('/' + handle)
+        console.log(handle)
+        history.push(handle)
     }
 
     handleKeyPress = (event) => {
@@ -42,7 +44,12 @@ class App extends React.Component {
                         <a href="https://github.com/Hapsidra/codeforces-unsolved">GitHub</a>
                     </aside>
                     <Router history={history}>
-                        <Route path="/:handle" component={Table} />
+                        <Switch>
+                            <Route path="/codeforces-unsolved/:handle" component={Table} />
+                            <Route path="/" render={() => (
+                                <Redirect to="/codeforces-unsolved/tourist"/>
+                            )}/>
+                        </Switch>
                     </Router>
                 </main>
     }
