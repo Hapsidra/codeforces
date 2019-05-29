@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/codeforces-unsolved/static/css/main.cdbea2ca.chunk.css",
-    "main.js": "/codeforces-unsolved/static/js/main.14d93288.chunk.js",
-    "main.js.map": "/codeforces-unsolved/static/js/main.14d93288.chunk.js.map",
+    "main.js": "/codeforces-unsolved/static/js/main.6b134a4d.chunk.js",
+    "main.js.map": "/codeforces-unsolved/static/js/main.6b134a4d.chunk.js.map",
     "runtime~main.js": "/codeforces-unsolved/static/js/runtime~main.0e69b1da.js",
     "runtime~main.js.map": "/codeforces-unsolved/static/js/runtime~main.0e69b1da.js.map",
     "static/js/2.dc883617.chunk.js": "/codeforces-unsolved/static/js/2.dc883617.chunk.js",
     "static/js/2.dc883617.chunk.js.map": "/codeforces-unsolved/static/js/2.dc883617.chunk.js.map",
     "index.html": "/codeforces-unsolved/index.html",
-    "precache-manifest.cfd02b8aeb65312958dfc10df3657f0e.js": "/codeforces-unsolved/precache-manifest.cfd02b8aeb65312958dfc10df3657f0e.js",
+    "precache-manifest.c8af41d03acd07d3313ea31e2f99270d.js": "/codeforces-unsolved/precache-manifest.c8af41d03acd07d3313ea31e2f99270d.js",
     "service-worker.js": "/codeforces-unsolved/service-worker.js",
     "static/css/main.cdbea2ca.chunk.css.map": "/codeforces-unsolved/static/css/main.cdbea2ca.chunk.css.map"
   }
