@@ -86,7 +86,7 @@ class Table extends React.Component {
         return <table>
                         <thead>
                             <tr>
-                                <th>№</th>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Tags</th>
                                 <th>Rating</th>
