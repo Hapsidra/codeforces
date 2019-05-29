@@ -13,6 +13,26 @@ class App extends React.Component {
         }
         this.handleInput = React.createRef();
         this.go = this.go.bind(this)
+        this.checkHandle()
+    }
+
+    checkHandle() {
+        const l = window.location
+        if (l.search) {
+            console.log(l)
+            var q = {};
+            l.search.slice(1).split('&').forEach(function(v) {
+                var a = v.split('=');
+                q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+            });
+            if (q.handle !== undefined) {
+                const handle = q.handle
+                window.history.replaceState(null, null,
+                    l.origin + '/codeforces-unsolved/' + handle
+                );
+                history.push(handle)
+            }
+        }
     }
 
     componentDidMount() {
@@ -46,8 +66,8 @@ class App extends React.Component {
                     <Router history={history}>
                         <Switch>
                             <Route path="/codeforces-unsolved/:handle" component={Table} />
-                            <Route path="/" render={() => (
-                                <Redirect to="/codeforces-unsolved/tourist"/>
+                            <Route exact path="/" render={() => (
+                                <Redirect to="/codeforces-unsolved/"/>
                             )}/>
                         </Switch>
                     </Router>
